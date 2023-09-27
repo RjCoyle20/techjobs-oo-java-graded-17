@@ -2,6 +2,8 @@ package org.launchcode.techjobs.oo;
 
 import java.util.Objects;
 
+import static java.lang.System.lineSeparator;
+
 public class Job {
 
     private int id;
@@ -47,6 +49,25 @@ public class Job {
         return Objects.hash(id);
     }
 
+    @Override
+    public String toString(){
+        if (name.equals("") && this.getEmployer().getValue().equals("") && this.getLocation().getValue().equals("") && this.getPositionType().getValue().equals("") && this.getCoreCompetency().getValue().equals("")){
+            return System.lineSeparator() +
+                    "OOPS! This job does not seem to exist." +
+                    System.lineSeparator();
+        }
+
+        if (name.equals("")) { name = "Data not available";}
+        if (this.getEmployer().getValue().equals("")) { employer = new Employer("Data not available");}
+        if (this.getLocation().getValue().equals("")) { location = new Location("Data not available");}
+        if (this.getPositionType().getValue().equals("")) { positionType = new PositionType("Data not available");}
+        if (this.getCoreCompetency().getValue().equals("")) { coreCompetency = new CoreCompetency("Data not available");}
+
+        return lineSeparator() +
+                "ID: " + id + "\nName: " + name + "\nEmployer: " + employer + "\nLocation: " +
+                location + "\nPosition Type: " + positionType + "\nCore Competency: " + coreCompetency +
+                lineSeparator();
+    }
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
 
